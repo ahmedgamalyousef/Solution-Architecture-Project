@@ -1,1 +1,85 @@
 # Solution-Architecture-Project
+## Scalable Web Application with ALB and Auto Scaling
+Deploy a highly available and scalable web application using Amazon EC2, Application Load Balancer (ALB), and Auto Scaling Groups (ASG) .
+
+### 📌 Project Overview
+This project demonstrates how to deploy a scalable web application on AWS, ensuring high availability, performance optimization, and security . The architecture includes EC2 instances, ALB for traffic distribution, ASG for dynamic scaling, and optional RDS for persistent storage .
+
+### 🏗 Architecture Diagram
+- Use Lucidchart or AWS Diagram tools to visualize the following architecture :
+
+- User Request → ALB → Auto Scaling Group (EC2 Instances) → (Optional) Amazon RDS
+Key AWS Services Used
+EC2 – Hosts the web application.
+
+- Application Load Balancer (ALB) – Routes traffic among EC2 instances.
+
+- Auto Scaling Group (ASG) – Adjusts instance count dynamically.
+
+- Amazon RDS (Optional) – Backend database with Multi-AZ failover .
+
+- IAM – Secure access control for AWS resources .
+
+- CloudWatch & SNS – Performance monitoring & alert notifications.
+
+### 🚀 Deployment Guide
+#### 1️⃣ Create an EC2 Instance
+- Log in to AWS Console .
+
+- Navigate to EC2 → Instances and launch a new instance .
+
+- Choose an Amazon Linux 2 or Ubuntu AMI .
+
+- Configure security groups to allow HTTP (port 80) and HTTPS (port 443) .
+
+- Install your web application (e.g., Apache, Nginx) .
+
+#### 2️⃣ Configure ALB (Application Load Balancer)
+- Go to EC2 → Load Balancers → Create ALB .
+
+- Set up listeners (HTTP, HTTPS) .
+
+- Configure target groups to register EC2 instances .
+
+#### 3️⃣ Set Up Auto Scaling
+- Navigate to EC2 → Auto Scaling Groups → Create ASG .
+
+- Define scaling policies based on CPU usage (e.g., scale-out at 60% CPU) .
+
+- Attach the ALB to ensure balanced traffic .
+
+#### 4️⃣ (Optional) Set Up Amazon RDS
+- Create an RDS instance (MySQL/PostgreSQL) .
+
+- Enable Multi-AZ for failover protection .
+
+- Modify security groups to allow access from EC2 instances .
+
+### 🔍 Monitoring & Alerts
+- Enable CloudWatch metrics to track EC2 and ALB performance :
+``` 
+  aws cloudwatch get-metric-data --metric-name CPUUtilization --namespace AWS/EC2 
+
+  ```
+- Set up SNS notifications for scaling alerts .
+
+### 🔒 Security Considerations
+- IAM Roles – Assign permissions to EC2 for accessing S3/RDS . 
+- Security Groups – Restrict access to specific ports . 
+- HTTPS Configuration – Use SSL/TLS certificates for secure communication .
+
+### ✅ Expected Outcomes
+- 🚀 High availability with ALB & ASG .
+
+- 📈 Automatic scaling to optimize performance .
+
+- 🔒 Secure IAM roles & network configurations .
+
+- 💰 Cost efficiency by scaling only when needed .
+
+### 🔗 Resources
+- [AWS Auto Scaling Docs](https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html)
+
+- [AWS ALB Docs](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html)
+
+- [AWS RDS Docs](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html)
